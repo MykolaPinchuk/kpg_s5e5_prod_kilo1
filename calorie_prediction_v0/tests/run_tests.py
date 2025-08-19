@@ -5,8 +5,9 @@ import unittest
 import os
 import sys
 
-# Add the tests directory to the path
+# Add the tests directory and the calorie_prediction_v0 directory to the path
 sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 # Import all test modules
 from test_model_loading import TestModelLoading

@@ -10,8 +10,8 @@ import numpy as np
 # Add the src directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from data_preprocessing import preprocess_data
-from feature_engineering import create_essential_features, create_advanced_features, get_feature_columns
+from src.data_preprocessing import preprocess_data
+from src.feature_engineering import create_essential_features, create_advanced_features, get_feature_columns
 
 
 class TestFeatureEngineering(unittest.TestCase):

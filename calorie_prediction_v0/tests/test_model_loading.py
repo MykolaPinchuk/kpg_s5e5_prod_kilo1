@@ -8,7 +8,7 @@ import sys
 # Add the src directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from model_pipeline import load_model
+from src.model_pipeline import load_model
 
 
 class TestModelLoading(unittest.TestCase):

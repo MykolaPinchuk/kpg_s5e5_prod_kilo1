@@ -10,7 +10,7 @@ import numpy as np
 # Add the src directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from data_preprocessing import preprocess_data, validate_data
+from src.data_preprocessing import preprocess_data, validate_data
 
 
 class TestDataPreprocessing(unittest.TestCase):
