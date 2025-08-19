@@ -1,0 +1,7 @@
+pandas==2.0.3
+scikit-learn==1.5.1
+xgboost==2.0.3
+numpy==1.24.4
+fastapi==0.110.0
+uvicorn==0.29.0
+pyyaml==6.0.1

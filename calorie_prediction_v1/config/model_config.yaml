@@ -1,0 +1,33 @@
+# Model configuration parameters
+
+model:
+  path: "models/baseline_xgb_model.pkl"
+  type: "xgboost"
+  version: "1.0.0"
+  feature_type: "essential"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  log_level: "info"
+
+preprocessing:
+  handle_missing_values: true
+  categorical_encoding: "one_hot"
+  feature_order: "consistent"
+
+validation:
+  check_data_ranges: true
+  check_missing_values: true
+  check_negative_calories: true
+
+features:
+  essential:
+    - "BMI"
+    - "Duration_HR_interaction"
+    - "Weight_HR_interaction"
+    - "MET_estimated"
+    - "MET_Duration_product"
+    - "Temp_deviation"
+    - "Duration_HR_Temp_interaction"
