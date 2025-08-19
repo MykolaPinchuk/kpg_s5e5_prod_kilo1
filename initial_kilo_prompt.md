@@ -4,4 +4,4 @@ The goal of this project is to deploy trained ML model locally. We want to do it
 
 Everything required for deployment should have been provided by DS agent in a folder 'input_files_from_DS_agent'.
 
-Initial planning is likely to be the hardest part of this project. Do not proceed until human approved this plan.
+Initial planning is likely to be the hardest part of this project. Do not proceed until human approved this plan. This may require several planning iterations.

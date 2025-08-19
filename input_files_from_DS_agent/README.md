@@ -60,6 +60,9 @@ The goal of this competition is to predict the number of calories burned during 
 
 To simulate production-like environment, we may want to simulate real-time data feed. One way to do it is to resample observations from a train set, either raw or altered.
 
+## Notes
+We want to deploy this locally. Cloud deployment is out of scope. For the final version of deployment, we want to follow best practices whever they make sense for this project. We do not want to overengineer.
+
 
 ## Dependencies
 - pandas==2.0.3
