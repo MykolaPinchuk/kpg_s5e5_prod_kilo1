@@ -51,7 +51,7 @@ class TestCaloriePredictionAPI(unittest.TestCase):
             # Build the Docker image
             build_result = subprocess.run(
                 ["docker", "build", "-t", "calorie-prediction-api", "."],
-                cwd="calorie_prediction_v1",
+                cwd=".",
                 capture_output=True,
                 text=True,
                 timeout=300
@@ -64,7 +64,7 @@ class TestCaloriePredictionAPI(unittest.TestCase):
             cls.container_process = subprocess.Popen([
                 "docker", "run", "--rm", "-p", "8000:8000",
                 "calorie-prediction-api"
-            ], cwd="calorie_prediction_v1")
+            ], cwd=".")
             
             # Wait for the service to start
             time.sleep(10)
@@ -201,8 +201,5 @@ class TestCaloriePredictionAPI(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    # Change to the calorie_prediction_v1 directory
-    os.chdir("calorie_prediction_v1")
-    
     # Run the tests
     unittest.main()

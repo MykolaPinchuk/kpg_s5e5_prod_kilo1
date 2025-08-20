@@ -28,4 +28,4 @@ COPY . .
 EXPOSE $PORT
 
 # Run the application
-CMD ["python", "api/app.py"]
+CMD ["python", "-m", "api.app"]

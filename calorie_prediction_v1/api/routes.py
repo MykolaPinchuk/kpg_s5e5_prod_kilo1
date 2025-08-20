@@ -13,7 +13,7 @@ import yaml
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from src.model_pipeline import load_model, predict
-from .models import WorkoutData, PredictionRequest, PredictionResponse, HealthCheckResponse
+from api.models import WorkoutData, PredictionRequest, PredictionResponse, HealthCheckResponse
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

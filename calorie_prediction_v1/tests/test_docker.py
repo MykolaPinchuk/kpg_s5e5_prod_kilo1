@@ -37,7 +37,8 @@ class TestDockerBuild(unittest.TestCase):
     
     def setUp(self):
         """Set up test environment."""
-        self.project_dir = "calorie_prediction_v1"
+        # Use current directory since we're already in the project root
+        self.project_dir = "."
     
     @skip_if_no_docker()
     def test_docker_build_success(self):
@@ -53,7 +54,7 @@ class TestDockerBuild(unittest.TestCase):
             
             self.assertEqual(
                 result.returncode, 0,
-                f"Docker build failed with output:\n{result.stdout}\n{result.stderr}"
+                f"Docker build failed with output:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
             )
             
             print("Docker image built successfully")
@@ -73,19 +74,23 @@ class TestDockerBuild(unittest.TestCase):
             ["docker", "build", "-t", "calorie-prediction-api", "."],
             cwd=self.project_dir,
             capture_output=True,
-            text=True
+            text=True,
+            timeout=300  # 5 minutes timeout
         )
         
-        self.assertEqual(build_result.returncode, 0, "Docker build failed")
+        self.assertEqual(
+            build_result.returncode, 0,
+            f"Docker build failed with output:\nSTDOUT:\n{build_result.stdout}\nSTDERR:\n{build_result.stderr}"
+        )
         
         # Check if image exists
         result = subprocess.run(
-            ["docker", "images", "calorie-prediction-api", "--format", "table"],
+            ["docker", "images", "--format", "table", "calorie-prediction-api"],
             capture_output=True,
             text=True
         )
         
-        self.assertEqual(result.returncode, 0, "Failed to list Docker images")
+        self.assertEqual(result.returncode, 0, f"Failed to list Docker images:\n{result.stderr}")
         self.assertIn("calorie-prediction-api", result.stdout, "Docker image not found")
         
         print("Docker image exists")

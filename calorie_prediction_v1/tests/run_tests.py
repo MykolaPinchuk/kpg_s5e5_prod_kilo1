@@ -6,24 +6,41 @@ import unittest
 import sys
 import os
 
-# Add the virtual environment's site-packages to the path
-venv_site_packages = os.path.join(os.path.dirname(__file__), '..', 'venv', 'lib', 'python3.12', 'site-packages')
-if os.path.exists(venv_site_packages) and venv_site_packages not in sys.path:
-    sys.path.insert(0, venv_site_packages)
-
-# Add debugging information
-print(f"Python executable: {sys.executable}")
-print(f"Python path: {sys.path}")
-
 # Add the current directory to the path so we can import test modules
 sys.path.insert(0, os.path.dirname(__file__))
 # Add the parent directory to the path so we can import src modules
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
+def is_docker_available():
+    """
+    Check if Docker is available on the system.
+    
+    Returns:
+        bool: True if Docker is available, False otherwise.
+    """
+    try:
+        import subprocess
+        # Try to run a simple Docker command
+        result = subprocess.run(
+            ["docker", "--version"],
+            capture_output=True,
+            text=True,
+            timeout=10
+        )
+        return result.returncode == 0
+    except (subprocess.TimeoutExpired, FileNotFoundError, Exception):
+        return False
+
 def run_tests():
     """Run Docker-based tests for the calorie prediction API."""
     print("Running Docker-based tests for Calorie Prediction API v1...")
     print("=" * 50)
+    
+    # Check if Docker is available
+    if not is_docker_available():
+        print("Docker is not available. Skipping Docker tests.")
+        print("To run Docker tests, please install Docker and ensure it's running.")
+        return 0
     
     # Create test suite
     loader = unittest.TestLoader()
@@ -36,6 +53,7 @@ def run_tests():
         print("Docker tests loaded successfully")
     except Exception as e:
         print(f"Warning: Could not load Docker tests: {e}")
+        return 1
     
     # Run tests
     runner = unittest.TextTestRunner(verbosity=2)

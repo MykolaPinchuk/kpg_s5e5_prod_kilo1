@@ -8,7 +8,7 @@ import logging
 import os
 import yaml
 
-from .routes import router as prediction_router
+from api.routes import router as prediction_router
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
